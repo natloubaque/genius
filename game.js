@@ -9,7 +9,9 @@ var level = 0;
 $(document).dblclick(function() {
   if (!started) {
     $("#level-title").text("Level " + level);
-    nextSequence();
+    setTimeout (function() {
+      nextSequence();
+    }, 1000)
     started = true;
   }
 });
@@ -31,7 +33,7 @@ function checkAnswer(currentLevel) {
     if (userClickPattern.length === gamePattern.length) {
       setTimeout(function() {
         nextSequence();
-      }, 1000);
+      }, 1500);
     }
   } else {
     playSound("wrong");
@@ -55,7 +57,7 @@ function nextSequence() {
   var randomChosenColor = buttonColors[randomNumber];
   gamePattern.push(randomChosenColor);
 
-  $("#" + randomChosenColor).fadeIn(100).fadeOut(100).fadeIn(100);
+  $("#" + randomChosenColor).fadeIn(100).fadeOut(800).fadeIn(100);
   playSound(randomChosenColor);
 }
 
@@ -63,7 +65,7 @@ function animatePress(currentColor) {
   $("#" + currentColor).addClass("pressed");
   setTimeout(function() {
     $("#" + currentColor).removeClass("pressed");
-  }, 100);
+  }, 500);
 }
 
 function playSound(name) {
